@@ -9,10 +9,5 @@ const About = (props) => {
     </Fragment>
   );
 };
-About.getInitialProps = async ({query}) => {
-  const { disheID } = query
-  console.log(query)
-  return { query };
-};
 
 export default About;
