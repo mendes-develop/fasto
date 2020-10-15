@@ -19,7 +19,7 @@ function MyApp(props) {
     const { Component, pageProps } = props;
     return (
       <Provider store={store}>
-        <Component  {...pageProps} />
+        <Component  {...pageProps} ronaldo={true}/>
       </Provider>
     );
   // }

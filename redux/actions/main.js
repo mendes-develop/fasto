@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const loadDishes = () => async dispatch => {
     // const data = await fetch("www.restarant/dishes")
+    console.log("fetching: www.restarant/dishes")
+    
     const item = {
         id: uuidv4(),
         name: "Guacamole",

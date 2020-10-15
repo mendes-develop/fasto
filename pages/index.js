@@ -37,11 +37,11 @@ const Quanatity = styled.div`
 
 const Container = styled.div``;
 
-const Index = () => {
-  const { dishes } = useSelector((state) => state.main);
+const Index = (props) => {
+  const { dishes, ...rest } = useSelector((state) => state.main);
   const router = useRouter();
   const dispatch = useDispatch();
-
+console.log("props", props)
   useEffect(() => {
     dispatch(loadDishes());
   }, []);
