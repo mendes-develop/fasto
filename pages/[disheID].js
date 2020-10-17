@@ -13,7 +13,7 @@ import { ButtonPlus, ButtonMinus } from "../components/PlusMinusButton";
 import CellDishID from "../components/CellIDishID";
 // import * as reactNative from 'react-native';
 
-console.log("hello");
+// console.log("hello");
 
 const Container = styled(View)`
   flex: 1;
@@ -28,7 +28,7 @@ const headerFlatList = () => (
     <Image
       style={styles.image}
       source={{
-        uri: "/download.jpg",
+        uri: "./download.jpg",
       }}
     />
     <View style={styles.titleContainer}>
@@ -53,16 +53,10 @@ const headerFlatList = () => (
     </View>
   </React.Fragment>
 );
-// const Image = styled.img.attrs((/* props */) => ({
-//   src: "/download.jpg",
-// }))`
-//   width: 100%;
-//   /* height: 200; */
-// `;
+
 
 const About = (props) => {
   const { selected_dish, ...rest } = useSelector((state) => state.main);
-  console.log(selected_dish, rest);
 
   let fakeArray = [
     {
