@@ -1,45 +1,50 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native-web";
 
-const Nav = styled.div`
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
-  display: flex;
-  background: #222;
-  padding: 0 15px;
-  list-style-type: none;
-  height: 55px;
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: inline;
-  }
-
-  img{
-
-  }
+const Image = styled.img.attrs(({ url }) => ({
+  src: url,
+}))`
+  height: 30px;
+  width: 30px;
 `;
 
 const Navbar = () => {
+  const styles = StyleSheet.create({
+    navContainer: {
+      backgroundColor: "white",
+      borderBottomColor: "pink",
+      borderBottomWidth: 1,
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      padding: 8,
+      position: "fixed",
+      left: 0,
+      right: 0,
+      top: 0,
+      zIndex: 9,
+    },
+    view: { height: 30, width: 30, zIndex: 9999 },
+    section: {
+      justifyContent: "center",
+      textAlign: "center",
+    },
+    pageTitle: {
+      fontSize: 25,
+      fontWeight: "bold",
+    },
+  });
   return (
-    <Nav>
-      <ul>
-        <li>
-          <img src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" alt="Girl in a jacket" width="50" height="50"/>
-        </li>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/about">About</Link>
-        </li>
-      </ul>
-    </Nav>
+    <View style={styles.navContainer}>
+      <View style={styles.section}>
+        <Image url={"./avatar.png"} />
+      </View>
+      <View style={styles.section}>
+        <Text style={styles.pageTitle}>Menu</Text>
+      </View>
+      <Image url={"./wine-list.png"}></Image>
+    </View>
   );
 };
 

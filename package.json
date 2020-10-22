@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "isomorphic-fetch": "^3.0.0",
     "next": "^9.5.3",
     "next-redux-wrapper": "^6.0.2",
     "react": "^16.13.1",
