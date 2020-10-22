@@ -91,5 +91,6 @@ function mockFetch() {
       resolve(JSON.stringify(new Array(5).fill(section)));
     }, 100);
   });
+  
   return promise;
 }

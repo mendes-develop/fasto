@@ -14,7 +14,7 @@ import styled from "styled-components";
 import { ButtonPlus, ButtonMinus } from "./PlusMinusButton";
 
 export default function CellItemDetail({ item, navigation }) {
-  // console.log(item)
+
   return (
     <React.Fragment>
       <View style={styles.subtitleContainer}>

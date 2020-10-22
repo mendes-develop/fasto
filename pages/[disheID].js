@@ -11,9 +11,6 @@ import DismissButton from "../components/DismissButton";
 import AddToCartButton from "../components/AddToCartButton";
 import { ButtonPlus, ButtonMinus } from "../components/PlusMinusButton";
 import CellDishID from "../components/CellIDishID";
-// import * as reactNative from 'react-native';
-
-// console.log("hello");
 
 const Container = styled(View)`
   flex: 1;

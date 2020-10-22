@@ -9,7 +9,7 @@ import {
 export default function AddToCartButton(){
 
   let total = '22.50'
-  // console.log(loading)
+
   let loading = false
 
     return (
