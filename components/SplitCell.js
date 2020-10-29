@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ecf0f1",
     // padding: 8,
     display: "flex",
-    // borderBottom: "1px solid red",
+    // border: "1px solid red",
     // marginBottom: "10px",
     paddingBottom: "10px",
     paddingTop: "20px",
@@ -48,7 +48,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     // border: '1px solid purple',
     // padding: 8
-    width: "35%",
+    // width: "35%",
+  },
+  image: {
+    // border: '1px solid red',
+    height: "50px",
+    width: "50px",
+    margin: "auto"
+    // margin: "auto",
   },
   subContainer2: {
     // border: "1px solid blue",
@@ -61,12 +68,6 @@ const styles = StyleSheet.create({
   subContainer3: {
     // border: "1px solid blue",
     width: "15%",
-  },
-  image: {
-    // border: '1px solid red',
-    height: 50,
-    width: 50,
-    margin: "auto",
   },
   name: {
     textAlign: "center",
