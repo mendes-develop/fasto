@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import SplitCell from "../../components/SplitCell";
-import Tab from "./Tab"
+import Tab from "./Tab";
+import { v4 as uuidv4 } from "uuid";
 import {
   SectionList,
   Platform,
@@ -23,6 +24,7 @@ const SplitScreen = (props) => {
   const flatListHeight = height - 4 * 48 - 40;
 
   const [tab, setTab] = useState("equal");
+  const [usersSelected, addUserSelected] = useState({});
 
   const styles = StyleSheet.create({
     container: {
@@ -37,9 +39,9 @@ const SplitScreen = (props) => {
     flatList: {
       height: flatListHeight,
       marginTop: 150,
-      // position: "fixed",
+      position: "fixed",
       // paddingTop: 100,
-      // border: "1px solid red",
+      border: "1px solid red",
     },
     bottomButtonContainer: {
       // flex: 2,
@@ -81,23 +83,41 @@ const SplitScreen = (props) => {
 
   return (
     <Layout>
-      <SafeAreaView style={styles.container}>
-        <Tab setTab={setTab} selected={tab}/>
+      {/* <SafeAreaView style={styles.container}> */}
+        <Tab setTab={setTab} selected={tab} />
         <FlatList
           data={props.data}
-          renderItem={({ item, index }) => <SplitCell key={index} section={item} />}
+          renderItem={({ item, index }) => (
+            <SplitCell
+              tab={tab}
+              addUserSelected={addUserSelected}
+              selected={usersSelected[item.id]}
+              key={index}
+              section={item}
+            />
+          )}
           keyExtractor={(item, index) => item.id + index}
           style={styles.flatList}
         />
         <PayButtons />
-      </SafeAreaView>
-      <style global jsx>{``}</style>
+      {/* </SafeAreaView> */}
+      <style global jsx>{`body{overflow: hidden;}`}</style>
     </Layout>
   );
 };
 
+const data = () => {
+  const data = [];
+  for (let i = 0; i <= 3; i++) {
+    data.push({ id: uuidv4(), imageUrl: "./avatar.png", name: "Tautology125", amount: 20050, selected: true });
+  }
+  return data;
+};
+
+// console.log(data(3));
+
 SplitScreen.defaultProps = {
-  data: [1, 2, 3],
+  data: data(3),
 };
 
 export default SplitScreen;

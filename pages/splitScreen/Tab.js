@@ -4,67 +4,72 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import SplitCell from "../../components/SplitCell";
-import {
-  SectionList,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  FlatList,
-  SafeAreaView,
-  Dimensions,
-  Image,
-} from "react-native-web";
+import styled from "styled-components";
+
+const blue = "rgb(14, 122, 254)";
+const white = "#ffffff";
+
+function borderRadius(props) {
+  const { middle, first, last } = props;
+  if (middle) return null;
+  if (first) return "5px 0px 0px 5px";
+  if (last) return "0px 5px 5px 0px";
+}
+const Banner = styled.div`
+  width: 100%;
+  position: fixed;
+  top: 47px;
+  justify-content: center;
+`;
+
+const Tab = styled.div`
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-top: 15px;
+  border: 1px solid rgb(14, 122, 254);
+  border-radius: 5px;
+  background-color: rgb(14, 122, 254);
+`;
+
+const StyledButton = styled.div`
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  flex: 1;
+  border-radius: ${(props) => borderRadius(props)};
+  background-color: ${({ selected }) => (selected ? blue : white)};
+  color: ${({ selected }) => (selected ? white : blue)};
+  ${({ middle }) =>
+    middle &&
+    `
+    border-left: 1px solid ${blue};
+    border-right: 1px solid ${blue};
+    
+    `};
+`;
 
 const ToggleButton = (props) => {
-  console.log("props", props);
-  const { setTab } = props;
-
-  const styles = StyleSheet.create({
-    buttonContainer: {
-      position: "fixed",
-      justifyContent: "center",
-      width: "100%",
-      padding: 20,
-      top: 47,
-      flexDirection: "row",
-      textAlign: "center",
-      border: `1px solid red`,
-      alignItems: "stretch",
-      // height: "200px",
-      // justifyContent: "flex-end",
-      // display: "flex",
-      // flex: 1,
-    },
-    button: {
-      // height: 50,
-      // width: 50,
-      flex: 1,
-      // width: "100%",
-      //   margin: 10,
-      border: "1px solid blue",
-      color: "blue",
-      backgroundColor: "pink",
-      paddingTop: 5,
-      paddingBottom: 5,
-    },
-    blue: { color: "blue" },
-    white: { color: "white" },
-  });
+  const { setTab, selected } = props;
 
   return (
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={(e) => setTab("equal")} style={styles.button}>
-        <Text style={styles.tabText}>Equally</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={(e) => setTab("order")} style={styles.button} style={styles.button}>
-        <Text style={styles.tabText}>Per order</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={(e) => setTab("custom")} style={styles.button} style={styles.button}>
-        <Text style={styles.tabText}>Custom</Text>
-      </TouchableOpacity>
-    </View>
+    <Banner>
+      <Tab>
+        <StyledButton first onClick={(e) => setTab("equal")} selected={selected === "equal"}>
+          Equal
+        </StyledButton>
+        <StyledButton middle onClick={(e) => setTab("order")} selected={selected === "order"}>
+          Per order
+        </StyledButton>
+        <StyledButton last onClick={(e) => setTab("custom")} selected={selected === "custom"}>
+          Custom
+        </StyledButton>
+      </Tab>
+    </Banner>
   );
 };
 
