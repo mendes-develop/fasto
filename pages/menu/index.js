@@ -42,8 +42,8 @@ const App = (props) => {
       <SafeAreaView style={styles.container}>
         <FlatList
           data={props.data}
-          ListHeaderComponent={()=><View style={{height: 47}}/>}
-          renderItem={({ item, index }) => <SectionCell section={item} />}
+          ListHeaderComponent={() => <View style={{ height: 47 }} />}
+          renderItem={({ item, index }) => <SectionCell key={index + 1} section={item} />}
           keyExtractor={(item, index) => item.id + index}
         />
       </SafeAreaView>
@@ -91,6 +91,6 @@ function mockFetch() {
       resolve(JSON.stringify(new Array(5).fill(section)));
     }, 100);
   });
-  
+
   return promise;
 }

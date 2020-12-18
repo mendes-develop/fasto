@@ -1,77 +1,27 @@
 import * as React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native-web";
+import styled from "styled-components";
+import { colors } from "../utils/colors";
+
+const RoundButton = styled.button`
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  display: flex;
+  background-color: ${({ minus }) => (minus ? colors.ghostWhite : colors.darkBlue)};
+  color: ${({ minus }) => (!minus ? colors.ghostWhite : colors.darkBlue)};
+  border-color: ${colors.darkBlue};
+  /* font-size: 18px; */
+  font-weight: bold;
+`;
 
 export function ButtonPlus() {
-    const styles = StyleSheet.create({
-        buttonContainer: {
-          height: 30,
-          width: 30,
-          borderRadius: 50,
-          justifyContent: "center",
-          alignItems: "center",
-        //   borderWidth: 2,
-          margin: 15,
-          display: "flex"
-        },
-        buttonPlus: {
-          backgroundColor: "rgb(255,77,0)",
-          borderColor: "rgb(255,77,0)"
-        },
-        buttonMinus: {
-          borderColor: "rgb(255,77,0)"
-        },
-        textPlus: {
-          color: "white",
-          fontWeight: "bold",
-          fontSize: 20
-        },
-        textMinus: {
-          color: "rgb(255,77,0)",
-          fontWeight: "bold",
-          fontSize: 20,
-        }
-      });
-  return (
-    <View style={[styles.buttonContainer, styles.buttonPlus]}>
-      <Text style={styles.textPlus}> + </Text>
-    </View>
-  );
+  return <RoundButton>+</RoundButton>;
 }
 
-export function ButtonMinus(props) {
-    const styles = StyleSheet.create({
-        buttonContainer: {
-          height: 30,
-          width: 30,
-          borderRadius: 50,
-          justifyContent: "center",
-          alignItems: "center",
-          borderWidth: 2,
-          margin: 15,
-          display: "flex"
-        },
-        buttonPlus: {
-          backgroundColor: "rgb(255,77,0)",
-          borderColor: "rgb(255,77,0)"
-        },
-        buttonMinus: {
-          borderColor: "rgb(255,77,0)"
-        },
-        textPlus: {
-          color: "white",
-          fontWeight: "bold",
-          fontSize: 20
-        },
-        textMinus: {
-          color: "rgb(255,77,0)",
-          fontWeight: "bold",
-          fontSize: 20,
-        }
-      });
-  return (
-    <View style={[styles.buttonContainer, styles.buttonMinus]}>
-      <Text style={styles.textMinus}>-</Text>
-    </View>
-  );
+export function ButtonMinus() {
+  return <RoundButton minus>-</RoundButton>;
 }
-

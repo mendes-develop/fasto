@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native-web";
+import { colors } from "../utils/colors";
 
 const Image = styled.img.attrs(({ url }) => ({
   src: url,
@@ -12,8 +13,8 @@ const Image = styled.img.attrs(({ url }) => ({
 const Navbar = () => {
   const styles = StyleSheet.create({
     navContainer: {
-      backgroundColor: "white",
-      borderBottomColor: "pink",
+      backgroundColor: colors.blue,
+      borderBottomColor: colors.darkBlue,
       borderBottomWidth: 1,
       display: "flex",
       flexDirection: "row",
@@ -33,6 +34,7 @@ const Navbar = () => {
     pageTitle: {
       fontSize: 25,
       fontWeight: "bold",
+      color: colors.white,
     },
   });
   return (
@@ -43,7 +45,10 @@ const Navbar = () => {
       <View style={styles.section}>
         <Text style={styles.pageTitle}>Menu</Text>
       </View>
-      <Image url={"./wine-list.png"}></Image>
+      <Image
+        style={{ filter: "invert(96%) sepia(46%) saturate(4457%) hue-rotate(180deg) brightness(106%) contrast(112%)" }}
+        url={"./wine-list.png"}
+      ></Image>
     </View>
   );
 };

@@ -1,45 +1,28 @@
 import * as React from "react";
-import {
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  View
-} from "react-native-web";
+import { Text, TouchableOpacity, StyleSheet, View } from "react-native-web";
+import styled from "styled-components";
+import { colors } from "../utils/colors";
 
-export default function AddToCartButton(){
+export const Button = styled.button`
+  display: block;
+  background-color: ${colors.darkBlue}; /* disabled rgba(5, 219, 106, 0.6)"*/
+  height: 55px;
+  border-radius: 10px;
+  justify-content: center;
+  padding: 10px 50px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: ${colors.ghostWhite};
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 10px;
+  border: 0;
+`;
 
-  let total = '22.50'
+export default function AddToCartButton() {
+  let total = "22.50";
+  let loading = false;
 
-  let loading = false
-
-    return (
-      <View  style={[styles.button, loading ? styles.disableButton  : styles.activeButton ]}>
-        <Text style={[styles.signupText, styles.buttonText]}>{loading ? 'Adding to Cart...' : `Add to Cart - $${total}`}</Text>
-      </View>
-    );
-};
-
-const styles = StyleSheet.create({
-  button: {
-    height: 55,
-    borderRadius: 30,
-    justifyContent: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 50,
-    marginHorizontal: 20,
-    marginVertical: 20
-  },
-  activeButton: {
-    backgroundColor: "rgb(255,77,0)",
-  },
-  disableButton: {
-    backgroundColor: "rgba(5, 219, 106, 0.6)"
-  },
-  buttonText: {
-    textAlign: "center",
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: "#ecf0f1"
-  },
-    
-})
+  return <Button>{loading ? "Adding to Cart..." : `Add to Cart - $${total}`}</Button>;
+}
