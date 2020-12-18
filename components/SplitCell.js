@@ -1,32 +1,21 @@
 import React, { useState } from "react";
+import {colors} from "../utils/colors"
 import { Text, View, StyleSheet, Image, TextInput, CheckBox } from "react-native-web";
 
-const SplitCell = ({ amount, name, imageUrl, addUserSelected, section, tab }) => {
-  const formattedAmount = () => `$${(amount / 100).toFixed(2)}`;
+const white = "#ffffff";
+const blue = "rgb(14, 122, 254)";
 
+const SplitCell = ({ amount, name, imageUrl, addUserSelected, section, tab }) => {
+  
+  
   const [selected, setSelected] = useState(false);
+  const [textInput, setTextInput] = useState("")
+  
+  const formattedAmount = () => `$${(amount / 100).toFixed(2)}`;
 
   return (
     <React.Fragment>
       <View style={styles.container}>
-        <View style={styles.subContainer1}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: imageUrl,
-            }}
-          />
-          <Text style={styles.name}>{name}</Text>
-        </View>
-        <View style={styles.subContainer2}>
-          <TextInput
-            keyboardType="numeric"
-            style={[styles.textInput, tab === "custom" && styles.black]}
-            editable={tab === "custom"}
-            placeholder="$200.50"
-            value={amount && formattedAmount()}
-          />
-        </View>
         <View style={styles.subContainer3}>
           <CheckBox
             disabled={tab === "order"}
@@ -34,10 +23,26 @@ const SplitCell = ({ amount, name, imageUrl, addUserSelected, section, tab }) =>
             name={name}
             value={tab === "order" || selected}
             style={styles.checkbox}
+            color={colors.blue}
+          />
+        </View>
+        <View style={styles.subContainer1}>
+          <Text style={styles.name}>{name}</Text>
+        </View>
+        <View style={styles.subContainer2}>
+          <TextInput
+            placeholder="$200.99"
+            keyboardType="numeric"
+            editable={tab === "custom"}
+            placeholderTextColor={"#2F4F4F"}
+            style={[styles.textInput, tab === "custom" && styles.enabled]}
+            value={tab === "custom" && amount ? formattedAmount() : ""}
+            onChange={()=> console.log("hello")}
           />
         </View>
       </View>
       <View style={styles.line}></View>
+      
     </React.Fragment>
   );
 };
@@ -45,7 +50,7 @@ const SplitCell = ({ amount, name, imageUrl, addUserSelected, section, tab }) =>
 SplitCell.defaultProps = {
   imageUrl: "./avatar.png",
   name: "Tautology125",
-  amount: 20050,
+  // amount: 20050,
   selected: true,
 };
 
@@ -55,7 +60,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     flexDirection: "row",
-    backgroundColor: "#ecf0f1",
+    backgroundColor: colors.ghostWhite,
     // padding: 8,
     display: "flex",
     // border: "1px solid red",
@@ -94,37 +99,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textInput: {
-    border: "1px solid gray",
-    backgroundColor: "#e5e8e7",
-    width: "80%",
-    textAlign: "right",
+    // border: "1px solid white",
+    backgroundColor: "#dddddd",
+    width: "70%",
     borderRadius: "5px",
     paddingTop: "5px",
     fontWeight: "400",
     fontSize: 25,
-    color: "gray",
-    // paddingRight: 10,
-    // textAlign: "center"
+    textAlign: "center"
+    // paddingRight: 15,
     // flex: 1,
     // height: 40,
     // padding: 10,
   },
+  enabled: {backgroundColor: colors.white},
   subContainer3: {
     // border: "1px solid blue",
     width: "15%",
     alignItems: "flex-end",
     justifyContent: "flex-end",
   },
-  black: { color: "black" },
+  black: { color: "darkGray" },
   checkbox: {
-    height: 30,
-    width: 30,
+    height: 20,
+    width: 20,
     margin: "auto",
   },
   line: {
     width: "90%",
     margin: "auto",
     borderBottomWidth: 1,
-    borderColor: "#808080",
+    borderColor: colors.darkBlue,
   },
 });

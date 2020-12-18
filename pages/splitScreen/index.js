@@ -6,6 +6,8 @@ import Layout from "../../components/Layout";
 import SplitCell from "../../components/SplitCell";
 import Tab from "./Tab";
 import { v4 as uuidv4 } from "uuid";
+import styled from "styled-components";
+import { colors } from "../../utils/colors";
 import {
   SectionList,
   Platform,
@@ -18,6 +20,49 @@ import {
   Dimensions,
   Image,
 } from "react-native-web";
+import { Button } from "../../components/AddToCartButton";
+
+const white = "#ffffff";
+
+const Table = styled.div`
+  position: fixed;
+  top: 170px;
+  width: 100%;
+  background-color: ${colors.ghostWhite};
+  /* border-top: 1px solid red; */
+  max-height: 400px;
+  overflow: scroll;
+`;
+const Line = styled.div`
+  width: 30%;
+  /* float: right; */
+
+  margin: auto;
+  border: 1px;
+  border-top: dashed ${colors.darkBlue};
+  border-width: 1px;
+  margin-right: 15px;
+`;
+const TotalContainer = styled.div`
+  width: 100%;
+  position: fixed;
+  right: 0%;
+  left: 0;
+  top: 94px;
+  padding-top: 5px;
+  justify-content: center;
+  /* border: 1px solid red; */
+`;
+const Total = styled.p`
+  /* width: 100%; */
+  /* padding: 0 -15px; */
+  /* border: 1px solid red; */
+  /* position: fixed; */
+  text-align: right;
+  padding-right: 15px;
+  margin: 3px;
+  /* top: 100px; */
+`;
 
 const SplitScreen = (props) => {
   const { height, width } = Dimensions.get("window");
@@ -25,6 +70,9 @@ const SplitScreen = (props) => {
 
   const [tab, setTab] = useState("equal");
   const [usersSelected, addUserSelected] = useState({});
+  const [total, setTotal] = useState(231_67);
+
+  const convertToCurrency = (val) => (val / 100).toFixed(2);
 
   const styles = StyleSheet.create({
     container: {
@@ -38,8 +86,8 @@ const SplitScreen = (props) => {
     },
     flatList: {
       height: flatListHeight,
-      marginTop: 150,
       position: "fixed",
+      top: 165,
       // paddingTop: 100,
       border: "1px solid red",
     },
@@ -71,44 +119,45 @@ const SplitScreen = (props) => {
   const PayButtons = () => {
     return (
       <View style={styles.bottomButtonContainer}>
-        <TouchableOpacity>
-          <Text style={styles.payButton}>Pay All</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.payButton}>Split</Text>
-        </TouchableOpacity>
+        <Button style={styles.payButton}>Pay All</Button>
+        <Button style={styles.payButton}>Split</Button>
       </View>
     );
   };
 
   return (
     <Layout>
-      {/* <SafeAreaView style={styles.container}> */}
-        <Tab setTab={setTab} selected={tab} />
-        <FlatList
-          data={props.data}
-          renderItem={({ item, index }) => (
-            <SplitCell
-              tab={tab}
-              addUserSelected={addUserSelected}
-              selected={usersSelected[item.id]}
-              key={index}
-              section={item}
-            />
-          )}
-          keyExtractor={(item, index) => item.id + index}
-          style={styles.flatList}
-        />
-        <PayButtons />
-      {/* </SafeAreaView> */}
-      <style global jsx>{`body{overflow: hidden;}`}</style>
+      <Tab setTab={setTab} selected={tab} />
+      <TotalContainer>
+        <Total>SubTotal: ${convertToCurrency(total)}</Total>
+        <Total>Tax: ${convertToCurrency(total * 0.1)}</Total>
+        <Line/>
+        <Total>Total: ${convertToCurrency(total + total * 0.1)}</Total>
+      </TotalContainer>
+      <Table>
+        {props.data.map((item, index) => (
+          <SplitCell
+            tab={tab}
+            addUserSelected={addUserSelected}
+            selected={usersSelected[item.id]}
+            key={index}
+            section={item}
+          />
+        ))}
+      </Table>
+      <PayButtons />
+      <style global jsx>{`
+        body {
+          overflow: hidden;
+        }
+      `}</style>
     </Layout>
   );
 };
 
-const data = () => {
+const data = (n = 1) => {
   const data = [];
-  for (let i = 0; i <= 3; i++) {
+  for (let i = 0; i <= n; i++) {
     data.push({ id: uuidv4(), imageUrl: "./avatar.png", name: "Tautology125", amount: 20050, selected: true });
   }
   return data;
@@ -117,7 +166,7 @@ const data = () => {
 // console.log(data(3));
 
 SplitScreen.defaultProps = {
-  data: data(3),
+  data: data(6),
 };
 
 export default SplitScreen;

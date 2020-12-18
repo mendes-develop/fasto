@@ -1,16 +1,39 @@
 import * as React from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native-web";
-import { useRouter } from 'next/router'
+import styled from "styled-components";
+import { useRouter } from "next/router";
+import { colors } from "../utils/colors";
 // import { useNavigation } from '@react-navigation/native';
+
+const RoundButton = styled.button`
+  background-color: white;
+  height: 40px;
+  width: 40px;
+  border-color: ${colors.darkBlue};
+  border-radius: 100px;
+  justify-content: center;
+  align-items: center;
+  // borderWidth: 2
+  /* shadowOffset: {
+      width: 0,
+      height: 4,
+    }, */
+  margin: 20px;
+  position: absolute;
+  font-weight: bold;
+  -webkit-box-shadow: 0 8px 6px -6px #777;
+  -moz-box-shadow: 0 8px 6px -6px #777;
+  box-shadow: 0 8px 6px -6px #777;
+`;
 
 export default function DismissButton() {
   // const navigation = useNavigation();
-  const router = useRouter()
+  const router = useRouter();
 
   return (
-    <TouchableOpacity onPress={() => router.back()} style={styles.buttonContainer}>
-      <Text style={styles.textPlus}> x </Text>
-    </TouchableOpacity>
+    <RoundButton onClick={() => router.back()} style={styles.textPlus}>
+      X
+    </RoundButton>
   );
 }
 

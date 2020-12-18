@@ -1,16 +1,14 @@
 import styled from "styled-components";
 import Navbar from "./Navbar";
+import {colors }from '../utils/colors'
 
 const Container = styled.div`
   margin: 0;
   padding: 0;
   height: 100vh;
-  /* border: 1px solid brown; */
-  /* overflow: hidden; */
-  /* display: flex;
-    flex-direction: column; */
-  /* border: 1px solid blue; */
-  /* box-sizing: content-box; */
+  display: flex;
+  background-color: ${colors.ghostWhite};
+  border: 1px solid red;
 `;
 const HelpButton = styled.div`
   height: 50px;
@@ -18,7 +16,8 @@ const HelpButton = styled.div`
   position: fixed;
   bottom: 10px;
   right: 15px;
-  border: 1px solid red;
+  border: 1px solid ${colors.lightOrange};
+  background-color: ${colors.orange};
   border-radius: 50%;
 `;
 

@@ -3,19 +3,21 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setDish } from "../../redux/actions/main";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native-web";
+import { colors } from "../../utils/colors"
 
 function SectionCell({ section }) {
   const styles = StyleSheet.create({
     sectionContainer: {
       justifyContent: "center",
-      backgroundColor: "white",
+      backgroundColor: colors.ghohstWhite,
       flex: 1,
       display: "flex",
     },
     sectionTitle: {
       fontSize: 22,
       fontWeight: "bold",
-      backgroundColor: "#f1f1f1",
+      backgroundColor: colors.blue,
+      color: colors.ghostWhite,
       padding: 10,
     },
     sectionItem: {
@@ -24,7 +26,7 @@ function SectionCell({ section }) {
       padding: 8,
       display: "flex",
       flex: 1,
-      borderBottomColor: "pink",
+      borderBottomColor: colors.darkBlue,
       borderBottomWidth: 1,
     },
     left: {
@@ -44,6 +46,7 @@ function SectionCell({ section }) {
       fontWeight: 500,
       paddingBottom: 5,
       paddingTop: 5,
+      color: colors.darkBlue
     },
     ingredients: {
       paddingBottom: 5,
@@ -56,6 +59,7 @@ function SectionCell({ section }) {
       justifyContent: "center",
       fontWeight: 500,
       display: "flex",
+      color: colors.orange
     },
   });
 

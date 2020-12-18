@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import SplitCell from "../../components/SplitCell";
 import styled from "styled-components";
+import { colors } from "../../utils/colors.js";
 
 const blue = "rgb(14, 122, 254)";
 const white = "#ffffff";
@@ -29,9 +30,9 @@ const Tab = styled.div`
   flex-direction: row;
   align-items: stretch;
   margin-top: 15px;
-  border: 1px solid rgb(14, 122, 254);
+  border: 1px solid ${colors.blue};
   border-radius: 5px;
-  background-color: rgb(14, 122, 254);
+  background-color: ${colors.blue};
 `;
 
 const StyledButton = styled.div`
@@ -42,14 +43,14 @@ const StyledButton = styled.div`
   padding: 5px;
   flex: 1;
   border-radius: ${(props) => borderRadius(props)};
-  background-color: ${({ selected }) => (selected ? blue : white)};
-  color: ${({ selected }) => (selected ? white : blue)};
+  background-color: ${({ selected }) => (selected ? colors.blue : colors.ghostWhite)};
+  color: ${({ selected }) => (selected ? colors.ghostWhite : colors.blue)};
   ${({ middle }) =>
     middle &&
     `
-    border-left: 1px solid ${blue};
-    border-right: 1px solid ${blue};
-    
+    border-left: 1px solid ${colors.blue};
+    border-right: 1px solid ${colors.blue};
+
     `};
 `;
 

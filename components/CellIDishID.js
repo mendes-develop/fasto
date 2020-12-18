@@ -12,9 +12,9 @@ import {
 } from "react-native-web";
 import styled from "styled-components";
 import { ButtonPlus, ButtonMinus } from "./PlusMinusButton";
+import { colors } from "../utils/colors";
 
 export default function CellItemDetail({ item, navigation }) {
-
   return (
     <React.Fragment>
       <View style={styles.subtitleContainer}>
@@ -77,12 +77,17 @@ const styles = StyleSheet.create({
     height: 100,
   },
   subtitleContainer: {
-    backgroundColor: "#f1f1f1",
+    backgroundColor: colors.blue,
+    borderTopWidth: 1,
+    borderTop: colors.darkBlue,
+    borderBottomWidth: 1,
+    borderBottom: colors.darkBlue,
     padding: 15,
   },
   subtitle: {
-    fontWeight: "bold",
-    fontSize: 15,
+    color: colors.ghostWhite,
+    fontWeight: 500,
+    fontSize: 18,
   },
   textInputView: {
     marginTop: 20,
@@ -92,7 +97,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#FFF",
+    backgroundColor: colors.ghostWhite,
     borderColor: "#EEE",
     fontWeight: 700,
   },
@@ -108,10 +113,12 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: "row",
     marginBottom: 10,
-    flex: 1
+    flex: 1,
   },
   checkbox: {
     alignSelf: "center",
+    height: 20,
+    width: 20
     // flex:1
   },
   label: {
@@ -119,7 +126,7 @@ const styles = StyleSheet.create({
     // flex:1,
     // border: "1px solid red"
   },
-  labelPrice:{
+  labelPrice: {
     position: "absolute",
     right: 50,
     // flex:1,
@@ -127,5 +134,5 @@ const styles = StyleSheet.create({
     width: "100px",
     // height: "120px",
     // border: "3px solid blue",
-  }
+  },
 });
